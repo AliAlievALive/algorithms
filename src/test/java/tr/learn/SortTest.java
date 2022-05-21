@@ -36,4 +36,19 @@ class SortTest {
         Lesson8_BubbleSort.bubble_sort(arr);
         assertArrayEquals(arr_copy, arr);
     }
+
+    @org.junit.jupiter.api.Test
+    void insertion_sort() {
+        final int n = new Random().nextInt(0, 100);
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = new Random().nextInt();
+        }
+
+        int[] arr_copy = new int[n];
+        System.arraycopy(arr, 0, arr_copy, 0, arr.length);
+        Arrays.sort(arr_copy);
+        Lesson9_InsertionSort.insertion_sort(arr);
+        assertArrayEquals(arr_copy, arr);
+    }
 }

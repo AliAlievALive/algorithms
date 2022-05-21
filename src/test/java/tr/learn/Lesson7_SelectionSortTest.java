@@ -1,0 +1,24 @@
+package tr.learn;
+
+import java.util.Arrays;
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class SortTest {
+
+    @org.junit.jupiter.api.Test
+    void selection_sort() {
+        final int n = new Random().nextInt(0, 100);
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = new Random().nextInt();
+        }
+
+        int[] arr_copy = new int[n];
+        System.arraycopy(arr, 0, arr_copy, 0, arr.length);
+        Arrays.sort(arr_copy);
+        Lesson7_SelectionSort.selection_sort(arr);
+        assertArrayEquals(arr_copy, arr);
+    }
+}

@@ -1,7 +1,6 @@
 package tr.learn;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -65,5 +64,20 @@ class SortTest {
         Arrays.sort(arr_copy);
         Lesson10_CountingSort.counting_sort(arr);
         assertArrayEquals(arr_copy, arr);
+    }
+
+    @org.junit.jupiter.api.Test
+    void merge_sort() {
+        final int n = new Random().nextInt(0, 100);
+        List<Integer> arr = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            arr.add(new Random().nextInt(0, 100));
+        }
+
+        List<Integer> arr_copy = new ArrayList<>(n);
+        arr_copy.addAll(arr);
+        arr_copy.sort(Comparator.comparingInt(o -> o));
+        Lesson11_MergeSort l11 = new Lesson11_MergeSort(arr);
+        assertArrayEquals(new List[]{arr_copy}, new List[]{l11.getArr()});
     }
 }

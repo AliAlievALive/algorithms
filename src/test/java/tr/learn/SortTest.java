@@ -77,7 +77,7 @@ class SortTest {
         List<Integer> arr_copy = new ArrayList<>(n);
         arr_copy.addAll(arr);
         arr_copy.sort(Comparator.comparingInt(o -> o));
-        Lesson11_MergeSort l11 = new Lesson11_MergeSort(arr);
-        assertArrayEquals(new List[]{arr_copy}, new List[]{l11.getArr()});
+        arr = Lesson11_MergeSort.merge_sort(arr);
+        assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
     }
 }

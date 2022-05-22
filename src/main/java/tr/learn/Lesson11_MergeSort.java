@@ -4,21 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson11_MergeSort {
-    private List<Integer> arr;
 
-    public List<Integer> getArr() {
-        return arr;
-    }
-
-    public Lesson11_MergeSort(List<Integer> arr) {
-        System.out.println(arr);
-        System.out.println(arr.size());
-        merge_sort(arr);
-    }
-
-    void merge_sort(List<Integer> arr) {
+    static List<Integer> merge_sort(List<Integer> arr) {
         if (arr.size() <= 1) {
-            return;
+            return arr;
         }
         List<Integer> left = new ArrayList<>();
         List<Integer> right = new ArrayList<>();
@@ -29,13 +18,13 @@ public class Lesson11_MergeSort {
         for (int i = n; i < arr.size(); ++i) {
             right.add(arr.get(i));
         }
-        merge_sort(left);
-        merge_sort(right);
+        left = merge_sort(left);
+        right = merge_sort(right);
 
-        arr = merge(left, right);
+        return merge(left, right);
     }
 
-    private List<Integer> merge(List<Integer> left, List<Integer> right) {
+    private static List<Integer> merge(List<Integer> left, List<Integer> right) {
         List<Integer> merged = new ArrayList<>();
         int left_index = 0, right_index = 0;
         while (left_index < left.size() && right_index < right.size()) {

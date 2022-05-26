@@ -80,4 +80,18 @@ class SortTest {
         arr = Lesson11_MergeSort.merge_sort(arr);
         assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
     }
+    @org.junit.jupiter.api.Test
+    void quick_sort() {
+        final int n = new Random().nextInt(0, 100);
+        ArrayList<Integer> arr = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            arr.add(new Random().nextInt(0, 100));
+        }
+
+        List<Integer> arr_copy = new ArrayList<>(n);
+        arr_copy.addAll(arr);
+        arr_copy.sort(Comparator.comparingInt(o -> o));
+        Lesson12_QuickSort.quick_sort(arr);
+        assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
+    }
 }

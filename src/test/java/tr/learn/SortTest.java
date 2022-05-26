@@ -82,22 +82,16 @@ class SortTest {
     }
     @org.junit.jupiter.api.Test
     void quick_sort() {
-        final int n = 6;
-        List<Integer> arr = new ArrayList<>(n);
-        arr.add(27);
-        arr.add(12);
-        arr.add(38);
-        arr.add(39);
-        arr.add(27);
-        arr.add(16);
-//        for (int i = 0; i < n; i++) {
-//            arr.add(new Random().nextInt(0, 100));
-//        }
+        final int n = new Random().nextInt(0, 100);
+        ArrayList<Integer> arr = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            arr.add(new Random().nextInt(0, 100));
+        }
 
         List<Integer> arr_copy = new ArrayList<>(n);
         arr_copy.addAll(arr);
         arr_copy.sort(Comparator.comparingInt(o -> o));
-        arr = Lesson12_QuickSort.quick_sort(arr);
+        Lesson12_QuickSort.quick_sort(arr);
         assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
     }
 }

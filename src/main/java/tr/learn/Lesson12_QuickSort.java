@@ -1,49 +1,41 @@
 package tr.learn;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Lesson12_QuickSort {
 
-    static List<Integer> quick_sort(List<Integer> arr) {
-        quick_sort(arr, 0, arr.size());
-        return null;
+    static void swap(ArrayList<Integer> arr, int i, int j) {
+        int temp = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, temp);
     }
 
-    static List<Integer> quick_sort(List<Integer> arr, int i, int j) {
-        if (i == j) {
-            return arr;
+    static void quick_sort(ArrayList<Integer> arr) {
+        quick_sort(arr, 0, arr.size() - 1);
+    }
+
+    static void quick_sort(ArrayList<Integer> arr, int i, int j) {
+        if (i < j) {
+            int pivot = partition(arr, i, j); // [i, pivot - 1] < pivot, [pivot + 1, j] >= pivot
+            quick_sort(arr, i, pivot - 1);
+            quick_sort(arr, pivot + 1, j);
         }
-        int pivot = partition(arr, i, j); // [i, pivot - 1] < pivot, [pivot + 1, j] >= pivot
-        i = pivot;
-        List<Integer> part1 = quick_sort(arr, i, pivot);
-        List<Integer> part2 = quick_sort(arr, pivot + 1, j);
-        part1.addAll(part2);
-        arr = part1;
-        return arr;
     }
 
-    private static int partition(List<Integer> arr, int i, int j) {
-        int pivot = i;
-        int s1_index = i;
-        int s2_index = i;
-        for (int k = i + 1; k < j; ++k) {
-            if (arr.get(k) >= arr.get(pivot)) {
-                ++s2_index;
-            } else {
-                ++s1_index;
-                int m = arr.get(s1_index);
-                arr.set(s1_index, arr.get(k));
-                arr.set(k, m);
-                ++s2_index;
+    private static int partition(ArrayList<Integer> arr, int i, int j) {
+        int pivot = arr.get(j);
+        int s1_index = (i - 1);
+        for (int k = i; k <= j - 1; k++) {
+            if (arr.get(k) < pivot) {
+                s1_index++;
+                swap(arr, s1_index, k);
             }
             //   27 12 38 39 27 16
             //   27 | 12 16 | 39 27 38
             // | 12 16 | 27 | 39 27 38 |
         }
-        int m = arr.get(s1_index);
-        arr.set(pivot, arr.get(s1_index));
-        arr.set(s1_index, m);
-        return s1_index;
+        swap(arr, s1_index + 1, j);
+        return (s1_index + 1);
     }
 
 }

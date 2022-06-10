@@ -94,4 +94,18 @@ class SortTest {
         Lesson12_QuickSort.quick_sort(arr);
         assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
     }
+    @org.junit.jupiter.api.Test
+    void radix_sort() {
+        final int n = new Random().nextInt(0, 10000);
+        ArrayList<Integer> arr = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            arr.add(new Random().nextInt(0, 100));
+        }
+
+        List<Integer> arr_copy = new ArrayList<>(n);
+        arr_copy.addAll(arr);
+        arr_copy.sort(Comparator.comparingInt(o -> o));
+        Lesson13_RadixSort.radix_sort(arr);
+        assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
+    }
 }

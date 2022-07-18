@@ -39,8 +39,8 @@ public class Lesson82_Heap {
         resHeap[heap.length] = node;
         int ind = resHeap.length - 1;
         while (ind != 1 && resHeap[ind] < resHeap[ind / 2]) {
-            swap(resHeap, ind, ind / 2);
-            ind /= 2;
+            swap(resHeap, ind, ind >> 1);
+            ind >>= 1;
         }
         return resHeap;
     }
@@ -50,15 +50,15 @@ public class Lesson82_Heap {
         int[] resHeap = new int[heap.length - 1];
         System.arraycopy(heap, 0, resHeap, 0, heap.length - 1);
         int ind = 1;
-        while (ind * 2 < resHeap.length && resHeap[ind] > resHeap[ind * 2] ||
-                ind * 2 + 1 < resHeap.length && resHeap[ind] > resHeap[ind * 2 + 1]) {
-            if (ind * 2 + 1 >= resHeap.length || resHeap[ind * 2] < resHeap[ind * 2 + 1]) {
-                swap(resHeap, ind, ind * 2);
+        while ((ind << 1) < resHeap.length && resHeap[ind] > resHeap[ind << 1] ||
+                (ind << 1 | 1) < resHeap.length && resHeap[ind] > resHeap[ind << 1 | 1]) {
+            if ((ind << 1) + 1 >= resHeap.length || resHeap[ind << 1] < resHeap[ind << 1 | 1]) {
+                swap(resHeap, ind, ind << 1);
             } else {
-                swap(resHeap, ind, ind * 2 + 1);
+                swap(resHeap, ind, ind << 1 | 1);
                 ++ind;
             }
-            ind *= 2;
+            ind <<= 1;
         }
         return resHeap;
     }

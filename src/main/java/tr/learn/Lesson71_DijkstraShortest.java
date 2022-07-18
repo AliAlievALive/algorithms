@@ -1,5 +1,7 @@
 package tr.learn;
 
+import Utils.Pair;
+
 import java.util.*;
 
 public class Lesson71_DijkstraShortest {

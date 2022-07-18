@@ -1,4 +1,4 @@
-package tr.learn;
+package Utils;
 
 public class Pair {
     private int node;

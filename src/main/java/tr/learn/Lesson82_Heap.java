@@ -1,0 +1,76 @@
+package tr.learn;
+
+public class Lesson82_Heap {
+
+    public static void main(String[] args) {
+        int[] heap = {1};
+        heap = add(heap, 2);
+        heap = add(heap, 5);
+        heap = add(heap, 3);
+        heap = add(heap, 10);
+        heap = add(heap, 6);
+        heap = add(heap, 9);
+        heap = add(heap, 5);
+        heap = add(heap, 12);
+        heap = add(heap, 40);
+
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+        heap = erase(heap);
+        System.out.println(top(heap));
+    }
+
+    private static int[] add(int[] heap, int node) { // O(log(n))
+        int[] resHeap = new int[heap.length + 1];
+        System.arraycopy(heap, 0, resHeap, 0, heap.length);
+        resHeap[heap.length] = node;
+        int ind = resHeap.length - 1;
+        while (ind != 1 && resHeap[ind] < resHeap[ind / 2]) {
+            swap(resHeap, ind, ind / 2);
+            ind /= 2;
+        }
+        return resHeap;
+    }
+
+    private static int[] erase(int[] heap) { // O(log(n))
+        swap(heap, 1, heap.length - 1);
+        int[] resHeap = new int[heap.length - 1];
+        System.arraycopy(heap, 0, resHeap, 0, heap.length - 1);
+        int ind = 1;
+        while (ind * 2 < resHeap.length && resHeap[ind] > resHeap[ind * 2] ||
+                ind * 2 + 1 < resHeap.length && resHeap[ind] > resHeap[ind * 2 + 1]) {
+            if (ind * 2 + 1 >= resHeap.length || resHeap[ind * 2] < resHeap[ind * 2 + 1]) {
+                swap(resHeap, ind, ind * 2);
+            } else {
+                swap(resHeap, ind, ind * 2 + 1);
+                ++ind;
+            }
+            ind *= 2;
+        }
+        return resHeap;
+    }
+
+    private static int top(int[] heap) {
+        return heap[1];
+    }
+
+    private static void swap(int[] resHeap, int ind1, int ind2) {
+        int t = resHeap[ind1];
+        resHeap[ind1] = resHeap[ind2];
+        resHeap[ind2] = t;
+    }
+
+}

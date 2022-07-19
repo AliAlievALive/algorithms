@@ -57,6 +57,6 @@ public class Lesson2_Stack {
     }
 
     private static boolean isOpen(char ch) {
-        return ch == '{' || ch == '[' || ch == '(' ;
+        return ch == '{' || ch == '[' || ch == '(';
     }
 }

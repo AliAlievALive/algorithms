@@ -36,18 +36,13 @@ public class Lesson4_LinkedList {
 
 class MyLinkedList {
     static Node headNode;
-    Node node;
     static int length = 0;
+    Node node;
 
     public MyLinkedList(Node node) {
         headNode = node;
         this.node = node;
         node.index = ++length;
-    }
-    void addNode(Node node) {
-        node.index = ++length;
-        this.node.next = node;
-        this.node = node;
     }
 
     static boolean isRecourse() {
@@ -62,6 +57,12 @@ class MyLinkedList {
             }
         }
         return true;
+    }
+
+    void addNode(Node node) {
+        node.index = ++length;
+        this.node.next = node;
+        this.node = node;
     }
 
     static class Node {

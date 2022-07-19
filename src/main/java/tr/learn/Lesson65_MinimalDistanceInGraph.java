@@ -31,7 +31,7 @@ public class Lesson65_MinimalDistanceInGraph {
         System.out.println();
         for (int i = 0; i < used.size(); i++) {
             System.out.println(i + 1 + " " + used.get(i));
-            
+
         }
     }
 

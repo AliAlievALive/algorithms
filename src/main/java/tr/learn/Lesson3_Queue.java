@@ -2,7 +2,6 @@ package tr.learn;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Stack;
 
 public class Lesson3_Queue {
     static Queue<Integer> q = new PriorityQueue<>();

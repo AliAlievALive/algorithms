@@ -3,16 +3,6 @@ package tr.learn;
 import java.util.*;
 
 public class Lesson57_GraphsRepresentation {
-    private static class Pair {
-        int first;
-        int second;
-
-        public Pair(int a, int b) {
-            first = a;
-            second = b;
-        }
-    }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Input a n: ");
@@ -39,7 +29,8 @@ public class Lesson57_GraphsRepresentation {
             int a = in.nextInt();
             System.out.print("Input a b: ");
             int b = in.nextInt();
-            --a; --b;
+            --a;
+            --b;
             matrix[a][b] = 1;
             matrix[b][a] = 1;
         }
@@ -57,7 +48,8 @@ public class Lesson57_GraphsRepresentation {
             int a = in.nextInt();
             System.out.print("Input a b: ");
             int b = in.nextInt();
-            --a; --b;
+            --a;
+            --b;
             if (matrixMap.get(a) == null) {
                 ArrayList<Integer> notes = new ArrayList<>();
                 matrixMap.put(a, notes);
@@ -75,5 +67,15 @@ public class Lesson57_GraphsRepresentation {
             System.out.println();
         }
         in.close();
+    }
+
+    private static class Pair {
+        int first;
+        int second;
+
+        public Pair(int a, int b) {
+            first = a;
+            second = b;
+        }
     }
 }

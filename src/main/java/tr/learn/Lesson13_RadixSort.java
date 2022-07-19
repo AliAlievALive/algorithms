@@ -2,8 +2,6 @@ package tr.learn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class Lesson13_RadixSort {
 
@@ -42,8 +40,7 @@ public class Lesson13_RadixSort {
         }
     }
 
-    static void radix_sort(ArrayList<Integer> arr)
-    {
+    static void radix_sort(ArrayList<Integer> arr) {
         int m = getMax(arr);
 
         for (int exp = 1; m / exp > 0; exp *= 10)

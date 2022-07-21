@@ -2,7 +2,8 @@ package tr.learn;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static tr.learn.Lesson82_Heap.*;
 
 class SortTest {
 
@@ -107,5 +108,23 @@ class SortTest {
         arr_copy.sort(Comparator.comparingInt(o -> o));
         Lesson13_RadixSort.radix_sort(arr);
         assertArrayEquals(new List[]{arr_copy}, new List[]{arr});
+    }
+
+    @org.junit.jupiter.api.Test
+    void heapSort() {
+        int[] heap = {1};
+        int[] arr = main();
+        for (int j : arr) {
+            add(heap, j);
+        }
+        int[] arr1 = arr;
+        erase(arr);
+        while (!empty(heap)) {
+            int[] arrCopy = new int[arr.length + 1];
+            System.arraycopy(arrCopy, 0, arr, 0, arr.length);
+            erase(heap);
+            arr = arrCopy;
+        }
+        assertArrayEquals(arr, arr1);
     }
 }

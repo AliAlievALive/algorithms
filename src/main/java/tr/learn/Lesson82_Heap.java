@@ -1,9 +1,8 @@
 package tr.learn;
 
 public class Lesson82_Heap {
-
-    public static void main(String[] args) {
-        int[] heap = {1};
+    static int[] heap = {1};
+    public static int[] main() {
         heap = add(heap, 2);
         heap = add(heap, 5);
         heap = add(heap, 3);
@@ -14,26 +13,10 @@ public class Lesson82_Heap {
         heap = add(heap, 12);
         heap = add(heap, 40);
 
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
-        heap = erase(heap);
-        System.out.println(top(heap));
+        return heap;
     }
 
-    private static int[] add(int[] heap, int node) { // O(log(n))
+    static int[] add(int[] heap, int node) { // O(log(n))
         int[] resHeap = new int[heap.length + 1];
         System.arraycopy(heap, 0, resHeap, 0, heap.length);
         resHeap[heap.length] = node;
@@ -45,7 +28,7 @@ public class Lesson82_Heap {
         return resHeap;
     }
 
-    private static int[] erase(int[] heap) { // O(log(n))
+    static void erase(int[] heap) { // O(log(n))
         swap(heap, 1, heap.length - 1);
         int[] resHeap = new int[heap.length - 1];
         System.arraycopy(heap, 0, resHeap, 0, heap.length - 1);
@@ -60,7 +43,10 @@ public class Lesson82_Heap {
             }
             ind <<= 1;
         }
-        return resHeap;
+    }
+
+    static boolean empty(int[] heap) {
+        return heap.length == 1;
     }
 
     private static int top(int[] heap) {

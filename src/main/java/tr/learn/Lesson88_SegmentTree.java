@@ -10,9 +10,11 @@ public class Lesson88_SegmentTree {
         int[] a = {1, 2, 3, 4, 5, 6, 7, 8};
         tree = new int[4 * a.length];
         buildTree(a, 1, 0, n - 1);
-        System.out.println(sum(1, 6, 1, 0, n - 1));
+        System.out.println(minQuery(1, 6, 1, 0, n - 1));
         update(3, 10, 1, 0, n - 1);
-        System.out.println(sum(1, 6, 1, 0, n - 1));
+        System.out.println(minQuery(1, 6, 1, 0, n - 1));
+        update(1, 20, 1, 0, n - 1);
+        System.out.println(minQuery(1, 6, 1, 0, n - 1));
     }
 
     private static void buildTree(int[] a, int v, int l, int r) {
@@ -23,12 +25,12 @@ public class Lesson88_SegmentTree {
         int m = (l + r) / 2;
         buildTree(a, v * 2, l, m);
         buildTree(a, v * 2 + 1, m + 1, r);
-        tree[v] = tree[2 * v] + tree[2 * v + 1];
+        tree[v] = min(tree[2 * v], tree[2 * v + 1]);
     }
 
-    private static int sum(int i, int j, int v, int l, int r) {
+    private static int minQuery(int i, int j, int v, int l, int r) {
         if (i > j) {
-            return 0;
+            return 1_000_000;
         }
         if (i == l && j == r) {
             return tree[v];
@@ -41,7 +43,7 @@ public class Lesson88_SegmentTree {
 //        } else {
 //            return sum(i, m, v * 2, l, m) + sum(m + 1, j, v * 2 + 1, m + 1, r);
 //        }
-        return sum(i, min(m, j), v * 2, l, m) + sum(max(m + 1, i), j, v * 2 + 1, m + 1, r);
+        return min(minQuery(i, min(m, j), v * 2, l, m), minQuery(max(m + 1, i), j, v * 2 + 1, m + 1, r));
     }
 
     private static void update(int i, int x,  int v, int l, int r) {
@@ -55,6 +57,6 @@ public class Lesson88_SegmentTree {
         } else {
             update(i, x, v * 2 + 1, m + 1, r);
         }
-        tree[v] = tree[2 * v] + tree[2 * v + 1];
+        tree[v] = min(tree[2 * v], tree[2 * v + 1]);
     }
 }
